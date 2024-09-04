@@ -1,11 +1,11 @@
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 
 const minter = async (contractAddress, jsoncid) => {
- const API_URL = "https://rpc-mumbai.maticvigil.com";
+ const API_URL = "https://rpc-mumbai.polygon.technology";
 
  const PUBLIC_KEY = "0x47Fd3622841bd24721d94EA240bD70Ee431bBe80";
  const PRIVATE_KEY =
-  "d1376117b5075b684b3e9730d048945f0c8c4c554b1ba92cb2712b3cd848ec96";
+  "f14be63162fd4e39549bfecdbf1507447ba90ba61de7a6734cb3f94068f346e8";
  const web3 = createAlchemyWeb3(API_URL);
 
  const contract = require("../artifacts/contracts/NFT2.0.sol/NFT20.json");

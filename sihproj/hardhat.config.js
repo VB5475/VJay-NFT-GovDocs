@@ -30,7 +30,7 @@ module.exports = {
  networks: {
   hardhat: {},
   mumbai: {
-   url: "https://polygon-mumbai.api.onfinality.io/public",
+   url: "https://rpc-amoy.polygon.technology/",
 
    // url: API_URL,
    accounts: [`0x${PRIVATE_KEY}`],

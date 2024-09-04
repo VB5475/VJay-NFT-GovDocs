@@ -11,16 +11,20 @@ contract NFT20 is ERC721, ERC721URIStorage, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("Pancard", "PAN") {}
+    constructor(address initialOwner) ERC721("Pancard", "PAN") {
+        transferOwnership(initialOwner);
+    }
 
-    function safeMint(address to, string memory uri) public onlyOwner returns (uint256) {
-    uint256 tokenId = _tokenIdCounter.current();
-    _tokenIdCounter.increment();
-    _safeMint(to, tokenId);
-    _setTokenURI(tokenId, uri);
-    return tokenId;
-}
-
+    function safeMint(
+        address to,
+        string memory uri
+    ) public onlyOwner returns (uint256) {
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, uri);
+        return tokenId;
+    }
 
     // The following functions are overrides required by Solidity.
 
