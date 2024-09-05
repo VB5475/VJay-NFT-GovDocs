@@ -8,8 +8,8 @@ const minter = async (contractAddress, jsoncid) => {
   "f14be63162fd4e39549bfecdbf1507447ba90ba61de7a6734cb3f94068f346e8";
  const web3 = createAlchemyWeb3(API_URL);
 
- const contract = require("../artifacts/contracts/NFT2.0.sol/NFT20.json");
-
+ const contract = require("../artifacts/contracts/NFT20.sol/NFT20.json");
+ console.log(contract);
  console.log(JSON.stringify(contract.abi));
 
  const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
