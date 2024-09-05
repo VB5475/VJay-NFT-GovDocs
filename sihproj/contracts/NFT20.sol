@@ -1,32 +1,34 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract NFT20 is ERC721, ERC721URIStorage, Ownable {
-    using Counters for Counters.Counter;
+contract NFT20 is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
+    uint256 private _nextTokenId;
 
-    Counters.Counter private _tokenIdCounter;
-
-    constructor(address initialOwner) ERC721("Pancard", "PAN") {
+    constructor(address initialOwner) ERC721("pancard", "PAN") {
         transferOwnership(initialOwner);
     }
 
-    function safeMint(
-        address to,
-        string memory uri
-    ) public onlyOwner returns (uint256) {
-        uint256 tokenId = _tokenIdCounter.current();
-        _tokenIdCounter.increment();
+    function safeMint(address to, string memory uri) public onlyOwner {
+        uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
-        return tokenId;
     }
 
     // The following functions are overrides required by Solidity.
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 firstTokenId,
+        uint256 batchSize
+    ) internal override(ERC721, ERC721Enumerable) {
+        super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
+    }
 
     function _burn(
         uint256 tokenId
@@ -42,7 +44,12 @@ contract NFT20 is ERC721, ERC721URIStorage, Ownable {
 
     function supportsInterface(
         bytes4 interfaceId
-    ) public view override(ERC721, ERC721URIStorage) returns (bool) {
+    )
+        public
+        view
+        override(ERC721, ERC721Enumerable, ERC721URIStorage)
+        returns (bool)
+    {
         return super.supportsInterface(interfaceId);
     }
 }

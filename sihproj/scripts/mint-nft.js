@@ -1,9 +1,9 @@
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 
 const minter = async (contractAddress, jsoncid) => {
- const API_URL = "https://rpc-mumbai.polygon.technology";
+ const API_URL = "https://rpc-amoy.polygon.technology/";
 
- const PUBLIC_KEY = "0x47Fd3622841bd24721d94EA240bD70Ee431bBe80";
+ const PUBLIC_KEY = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
  const PRIVATE_KEY =
   "f14be63162fd4e39549bfecdbf1507447ba90ba61de7a6734cb3f94068f346e8";
  const web3 = createAlchemyWeb3(API_URL);

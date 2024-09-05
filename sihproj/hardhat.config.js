@@ -19,7 +19,7 @@ const { API_URL, PRIVATE_KEY } = process.env;
 
 module.exports = {
  solidity: {
-  version: "0.8.9",
+  version: "0.8.20",
   settings: {
    optimizer: {
     enabled: true,
